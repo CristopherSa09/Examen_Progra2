@@ -25,17 +25,18 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse d-flex justify-content-between">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Login.aspx">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">CRUD</a></li>      
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">CRUD</a></li>
                     </ul>
-               
-                    <div class="d-flex">
-                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control me-2" placeholder="Email"></asp:TextBox>
-                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control me-2" placeholder="Contraseña"></asp:TextBox>
-                        <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-success" />
-                    </div>
+
+                    <!-- Formulario login en navbar -->
+                  <!--   <div class="d-flex align-items-center">
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control me-2" Placeholder="Email" />
+                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control me-2" Placeholder="Contraseña" />
+                        <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-primary" OnClick="btnLogin_Click" />
+                    </div>-->
                 </div>
             </div>
         </nav>
