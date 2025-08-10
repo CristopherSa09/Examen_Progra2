@@ -1,6 +1,8 @@
 ﻿Imports System
 Imports System.Collections.Generic
 
+' Todo esto es lo mismo que en default por error que tuve 
+
 Partial Class Clientes
     Inherits System.Web.UI.Page
 
@@ -89,3 +91,5 @@ Partial Class Clientes
     End Sub
 
 End Class
+
+' Todo esto es lo mismo que en default por error que tuve 

@@ -12,6 +12,9 @@ Partial Class _Default
         End If
     End Sub
 
+
+    ' Carga la lista de clientes y mandarla al grid
+
     Private Sub CargarClientes()
         Try
             Dim listaClientes As List(Of Cliente) = repo.ObtenerClientes()
@@ -22,18 +25,28 @@ Partial Class _Default
         End Try
     End Sub
 
+    ' evento para agregar clientes
+
     Protected Sub btnAgregar_Click(sender As Object, e As EventArgs)
+        ' Verificar que la validación de los controles sea correcta
+        If Not Page.IsValid Then
+            Return
+        End If
+
+        ' Si pasó la validación, seguimos con la inserción
         Dim nuevoCliente As New Cliente() With {
-            .Nombre = txtNombre.Text.Trim(),
-            .Apellidos = txtApellidos.Text.Trim(),
-            .Email = txtEmail.Text.Trim(),
-            .Telefono = txtTelefono.Text.Trim()
-        }
+        .Nombre = txtNombre.Text.Trim(),
+        .Apellidos = txtApellidos.Text.Trim(),
+        .Email = txtEmail.Text.Trim(),
+        .Telefono = txtTelefono.Text.Trim()
+    }
 
         repo.InsertarCliente(nuevoCliente)
         CargarClientes()
         LimpiarCampos()
     End Sub
+
+    ' limpiar campos
 
     Private Sub LimpiarCampos()
         txtNombre.Text = ""
@@ -41,6 +54,8 @@ Partial Class _Default
         txtEmail.Text = ""
         txtTelefono.Text = ""
     End Sub
+
+    ' actualizar grid en tiempo real
 
     Protected Sub GridViewClientes_RowEditing(sender As Object, e As GridViewEditEventArgs)
         GridViewClientes.EditIndex = e.NewEditIndex
@@ -73,6 +88,8 @@ Partial Class _Default
         GridViewClientes.EditIndex = -1
         CargarClientes()
     End Sub
+
+    ' Eliminar cliente selecionado
 
     Protected Sub GridViewClientes_RowDeleting(sender As Object, e As GridViewDeleteEventArgs)
         Dim clienteId As Integer = Convert.ToInt32(GridViewClientes.DataKeys(e.RowIndex).Value)

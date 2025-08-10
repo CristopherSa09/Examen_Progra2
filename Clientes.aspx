@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="VB" AutoEventWireup="true" CodeBehind="Clientes.aspx.vb" Inherits="Examen_Progra2.Clientes" %>
 
+ <!-- Todo esto es lo mismo que en default por error que tuve -->
+
 <!DOCTYPE html>
 <html lang="es">
 <head runat="server">
@@ -44,3 +46,5 @@
     </form>
 </body>
 </html>
+
+ <!-- Todo esto es lo mismo que en default por error que tuve -->

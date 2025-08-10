@@ -1,12 +1,17 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
 
+
+' métodos para ejecutar consultas SQL server
+
 Public Interface IDataHelper
     Function ExecuteNonQuery(query As String, params As Dictionary(Of String, Object)) As Integer
     Function ExecuteScalar(query As String, params As Dictionary(Of String, Object)) As Object
     Function ExecuteReader(query As String, params As Dictionary(Of String, Object)) As SqlDataReader
     Function ExecuteDataTable(query As String, params As Dictionary(Of String, Object)) As DataTable
 End Interface
+
+' manejar ejecuciión y consultas
 
 Public Class DatabaseHelper
     Implements IDataHelper
@@ -16,6 +21,8 @@ Public Class DatabaseHelper
     Public Sub New()
         connectionString = System.Configuration.ConfigurationManager.ConnectionStrings("II46ConnectionString").ConnectionString
     End Sub
+
+    ' Ejecucion de comandos sql
 
     Public Function ExecuteNonQuery(query As String, params As Dictionary(Of String, Object)) As Integer Implements IDataHelper.ExecuteNonQuery
         Using conn As New SqlConnection(connectionString)
@@ -58,6 +65,8 @@ Public Class DatabaseHelper
         End Using
         Return dt
     End Function
+
+    ' parámetros de inyección SQL
 
     Private Sub AddParameters(cmd As SqlCommand, params As Dictionary(Of String, Object))
         If params IsNot Nothing Then
