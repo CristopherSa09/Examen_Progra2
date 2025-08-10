@@ -1,44 +1,37 @@
-﻿<%@ Page Title="Home Page" Language="VB" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.vb" Inherits="Examen_Progra2._Default" %>
-
+﻿<%@ Page Title="Gestión de Clientes" Language="VB" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.vb" Inherits="Examen_Progra2._Default" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <main>
-        <section class="row" aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">ASP.NET</h1>
-            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-            <p><a href="http://www.asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-        </section>
+    <h3>Agregar Nuevo Cliente</h3>
+    <div class="mb-3">
+        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" Placeholder="Nombre"></asp:TextBox>
+    </div>
+    <div class="mb-3">
+        <asp:TextBox ID="txtApellidos" runat="server" CssClass="form-control" Placeholder="Apellidos"></asp:TextBox>
+    </div>
+    <div class="mb-3">
+        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" Placeholder="Email"></asp:TextBox>
+    </div>
+    <div class="mb-3">
+        <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" Placeholder="Teléfono"></asp:TextBox>
+    </div>
+    <asp:Button ID="btnAgregar" runat="server" CssClass="btn btn-primary" Text="Agregar Cliente" OnClick="btnAgregar_Click" />
 
-        <div class="row">
-            <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-                <h2 id="gettingStartedTitle">Getting started</h2>
-                <p>
-                    ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-                A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="librariesTitle">
-                <h2 id="librariesTitle">Get more libraries</h2>
-                <p>
-                    NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="hostingTitle">
-                <h2 id="hostingTitle">Web Hosting</h2>
-                <p>
-                    You can easily find a web hosting company that offers the right mix of features and price for your applications.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-                </p>
-            </section>
-        </div>
-    </main>
+     <h2>Gestión de Clientes</h2>
+
+ <asp:GridView ID="GridViewClientes" runat="server" CssClass="table table-striped"
+     AutoGenerateColumns="False" DataKeyNames="ClienteId"
+     OnRowEditing="GridViewClientes_RowEditing"
+     OnRowCancelingEdit="GridViewClientes_RowCancelingEdit"
+     OnRowUpdating="GridViewClientes_RowUpdating"
+     OnRowDeleting="GridViewClientes_RowDeleting">
+     <Columns>
+         <asp:BoundField DataField="ClienteId" HeaderText="ID" ReadOnly="True" />
+         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+         <asp:BoundField DataField="Apellidos" HeaderText="Apellidos" />
+         <asp:BoundField DataField="Email" HeaderText="Email" />
+         <asp:BoundField DataField="Telefono" HeaderText="Teléfono" />
+         <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
+     </Columns>
+ </asp:GridView>
 
 </asp:Content>

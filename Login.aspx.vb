@@ -25,7 +25,7 @@ Partial Class Login
 
             If result > 0 Then
                 ' Login correcto, redirigir a la página principal
-                Response.Redirect("~/Clientes.aspx")
+                Response.Redirect("default.aspx")
             Else
                 lblMessage.Text = "Usuario o contraseña incorrectos, vuelva a intentar"
             End If
