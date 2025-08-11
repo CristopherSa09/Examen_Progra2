@@ -67,22 +67,30 @@ Partial Class _Default
         CargarClientes()
     End Sub
 
+    ' evento para actualizar cliente
+
     Protected Sub GridViewClientes_RowUpdating(sender As Object, e As GridViewUpdateEventArgs)
         Dim clienteId As Integer = Convert.ToInt32(GridViewClientes.DataKeys(e.RowIndex).Value)
         Dim row As GridViewRow = GridViewClientes.Rows(e.RowIndex)
 
-        Dim nombre As String = DirectCast(row.Cells(1).Controls(0), TextBox).Text.Trim()
-        Dim apellidos As String = DirectCast(row.Cells(2).Controls(0), TextBox).Text.Trim()
-        Dim email As String = DirectCast(row.Cells(3).Controls(0), TextBox).Text.Trim()
-        Dim telefono As String = DirectCast(row.Cells(4).Controls(0), TextBox).Text.Trim()
+        ' Buscar los controles dentro del TemplateField usando FindControl
+        Dim txtNombreGrid As TextBox = CType(row.FindControl("txtNombreGrid"), TextBox)
+        Dim txtApellidosGrid As TextBox = CType(row.FindControl("txtApellidosGrid"), TextBox)
+        Dim txtEmailGrid As TextBox = CType(row.FindControl("txtEmailGrid"), TextBox)
+        Dim txtTelefonoGrid As TextBox = CType(row.FindControl("txtTelefonoGrid"), TextBox)
+
+        Dim nombre As String = If(txtNombreGrid IsNot Nothing, txtNombreGrid.Text.Trim(), "")
+        Dim apellidos As String = If(txtApellidosGrid IsNot Nothing, txtApellidosGrid.Text.Trim(), "")
+        Dim email As String = If(txtEmailGrid IsNot Nothing, txtEmailGrid.Text.Trim(), "")
+        Dim telefono As String = If(txtTelefonoGrid IsNot Nothing, txtTelefonoGrid.Text.Trim(), "")
 
         Dim clienteActualizado As New Cliente() With {
-            .ClienteId = clienteId,
-            .Nombre = nombre,
-            .Apellidos = apellidos,
-            .Email = email,
-            .Telefono = telefono
-        }
+        .ClienteId = clienteId,
+        .Nombre = nombre,
+        .Apellidos = apellidos,
+        .Email = email,
+        .Telefono = telefono
+    }
 
         repo.ActualizarCliente(clienteActualizado)
         GridViewClientes.EditIndex = -1
